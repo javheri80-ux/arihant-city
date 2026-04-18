@@ -240,6 +240,19 @@
             
             closeBtn.addEventListener('click', () => { popup.classList.remove('show'); });
             popup.addEventListener('click', (e) => { if (e.target === popup) popup.classList.remove('show'); });
+
+            // Trigger popup on all CTA buttons
+            const triggerBtns = document.querySelectorAll('.btn, .btn-enquire');
+            triggerBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Skip if button is inside the popup itself or if it's a submit button in a form
+                    if (btn.closest('#auto-popup')) return;
+                    if (btn.type === 'submit' && btn.closest('form')) return;
+
+                    e.preventDefault();
+                    popup.classList.add('show');
+                });
+            });
         });
     </script>
 </head>
