@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Greenville Thane West</title>
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-green: #0a4d2e;
+            --light-green: #d4efdf; 
+            --mid-green: #27ae60;
+            --tan-bg: #e5d8b0; 
+            --white: #ffffff;
+            --dark-text: #222222;
+            --gray-text: #555555;
+            --footer-bg: #111111;
+            --accent-gold: #c4a75e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { color: var(--dark-text); line-height: 1.6; overflow-x: hidden; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Utility */
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .section-padding { padding: 60px 0; }
+        .text-center { text-align: center; }
+        
+        .section-title { color: var(--primary-green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-size: 1.8rem; }
+        .section-subtitle { font-size: 1rem; color: var(--gray-text); margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;}
+        
+        .btn { display: inline-block; background-color: var(--primary-green); color: var(--white); padding: 12px 30px; text-decoration: none; border-radius: 5px; text-transform: uppercase; font-size: 0.85rem; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .btn:hover { background-color: var(--mid-green); }
+
+        /* Header */
+        header { background-color: var(--primary-green); padding: 15px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent-gold); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 1400px; margin: 0 auto; }
+        .logo-img { height: 45px; }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; }
+        .nav-actions .btn { margin-top: 0; padding: 10px 20px; background-color: transparent; border: 1px solid var(--white); }
+        .nav-actions .btn.solid { background-color: var(--tan-bg); color: var(--primary-green); border: none; }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: 1px solid white; padding: 2px 10px; color: white; border-radius: 4px; }
+
+        /* Hero */
+        .hero { width: 100%; height: auto; }
+
+        /* Overview & Pricing */
+        .design-divider { color: var(--primary-green); font-size: 2rem; margin-bottom: -5px; text-align: center;}
+        table { width: 100%; border-collapse: collapse; margin: 30px 0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+        th { background-color: var(--primary-green); color: var(--white); padding: 15px; text-transform: uppercase; border-right: 1px solid #1c6641; }
+        td { padding: 15px; border-bottom: 1px solid #ddd; background-color: #fdf5e6; border-right: 1px solid #e0d0b8; font-weight: 500;}
+
+        /* Sections Backgrounds & Layouts */
+        .story-section { background-color: var(--light-green); }
+        .peaceful-section { background-color: var(--primary-green); color: var(--white); }
+        .peaceful-section .section-title { color: var(--white); }
+        .flex-split { display: flex; align-items: center; gap: 40px; }
+        .flex-split > * { flex: 1; }
+        
+        .amenities-cards { background-color: var(--tan-bg); }
+        .grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .card { background: var(--white); padding: 15px; text-align: center; border-radius: 5px; }
+        .card img { width: 100%; height: 250px; object-fit: cover; margin-bottom: 15px; border-radius: 4px;}
+
+        /* Connectivity Section */
+        .connectivity-section { background-color: var(--light-green); }
+        .conn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; margin-top: 30px; }
+        .conn-col h4 { margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; color: var(--primary-green);}
+        .conn-col ul { list-style: none; font-size: 0.9rem; }
+        .conn-col li { margin-bottom: 8px; position: relative; padding-left: 15px; }
+        .conn-col li::before { content: "•"; position: absolute; left: 0; color: var(--primary-green); font-size: 1.2rem; line-height: 1;}
+
+        /* Comfort Section */
+        .comfort-section { background-color: var(--primary-green); color: var(--white); }
+        .comfort-section .section-title, .comfort-section .section-subtitle { color: var(--white); }
+        .comfort-img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 30px; border: 4px solid var(--tan-bg);}
+        .comfort-list-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; text-align: left; font-size: 0.95rem; }
+        .comfort-list-grid li { list-style: none; padding-left: 20px; position: relative;}
+        .comfort-list-grid li::before { content: "✓"; position: absolute; left: 0; color: var(--tan-bg); }
+
+        /* Floor Plans & Gallery */
+        .floor-plan-section { background-color: var(--tan-bg); }
+        .gallery-section { background-color: var(--light-green); }
+        .img-row { display: flex; gap: 30px; justify-content: center; }
+        .img-row img { flex: 1; border: 8px solid var(--white); box-shadow: 0 4px 10px rgba(0,0,0,0.1);}
+
+        /* Why Choose */
+        .why-choose { background-color: var(--primary-green); color: var(--white); }
+        .why-choose .section-title { color: var(--white); }
+        .why-choose p { font-size: 0.95rem; margin-bottom: 20px; text-align: justify; line-height: 1.8;}
+
+        /* Contact & Map */
+        .contact-section { display: flex; background: #f0f0f0; }
+        .map-container { flex: 1.5; min-height: 450px; }
+        .map-container iframe { width: 100%; height: 100%; border: none;}
+        .form-container { flex: 1; padding: 50px 40px; background-color: #e0e0e0; display: flex; flex-direction: column; justify-content: center;}
+        .form-container input, .form-container select { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem;}
+
+        /* Footer */
+        footer { background-color: var(--footer-bg); color: var(--white); padding: 40px 0 20px; font-size: 0.85rem; text-align: center; }
+
+        /* =========================================
+           ON-LOAD POPUP
+           ========================================= */
+        .popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); z-index: 99999;
+            display: none; justify-content: center; align-items: center;
+        }
+        .popup-overlay.show { display: flex; }
+        .popup-box { background: var(--white); width: 90%; max-width: 400px; border-radius: 8px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .popup-close { position: absolute; top: 10px; right: 15px; font-size: 28px; color: var(--dark-text); cursor: pointer; font-weight: bold; }
+        .popup-header { background: var(--tan-bg); color: var(--primary-green); padding: 25px 20px; text-align: center; }
+        .popup-header h3 { margin: 0; font-size: 1.5rem; text-transform: uppercase;}
+        .popup-body { padding: 30px 20px; text-align: center;}
+        .popup-body p { margin-bottom: 20px; font-size: 0.95rem; color: var(--gray-text);}
+        .popup-body input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 1rem;}
+        .popup-btn { width: 100%; background: var(--primary-green); color: white; padding: 15px; border: none; font-size: 1rem; text-transform: uppercase; font-weight: bold; cursor: pointer; border-radius: 4px;}
+
+        /* =========================================
+           MOBILE RESPONSIVENESS & BOTTOM BAR
+           ========================================= */
+        .mobile-bottom-bar { display: none; }
+
+        @media (max-width: 992px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--primary-green); padding: 20px 0; text-align: center; border-top: 1px solid #1a7649; }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin-bottom: 15px; }
+            .hamburger { display: block; }
+            .nav-actions { display: none; }
+            .flex-split, .contact-section { flex-direction: column; }
+            .map-container { min-height: 300px; width: 100%;}
+            .comfort-list-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .grid-2x2, .img-row { flex-direction: column; display: flex; }
+            .conn-grid { grid-template-columns: repeat(2, 1fr); }
+            .comfort-list-grid { grid-template-columns: 1fr; }
+            .table-wrapper { overflow-x: auto; }
+            table { min-width: 400px; }
+            
+            body { padding-bottom: 85px; } /* Prevent footer hide */
+            
+            /* SHOW FIXED BOTTOM BAR */
+            .mobile-bottom-bar {
+                display: block; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 9999; box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            }
+            .appointment-banner { background-color: #3b3b3b; color: #ffffff; text-align: center; padding: 8px; font-size: 0.85rem; font-weight: 600; }
+            .action-buttons { display: flex; width: 100%; }
+            .action-buttons a {
+                flex: 1; text-decoration: none; color: #ffffff; text-align: center; padding: 14px 2px;
+                font-size: 0.85rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; text-transform: uppercase;
+            }
+            .action-buttons svg { width: 18px; height: 18px; fill: currentColor; }
+            .btn-call { background-color: #0a4d2e; } /* Match primary green */
+            .btn-enquire { background-color: #a67c00; } /* Match Gold/Tan */
+            .btn-whatsapp { background-color: #6a8c79; } /* Muted Teal */
+        }
+        
+        @media (max-width: 480px) {
+            .conn-grid { grid-template-columns: 1fr; }
+            .action-buttons a { font-size: 0.75rem; padding: 12px 2px;}
+        }
+    </style>
+
+    <!-- JS Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Mobile Hamburger
+            document.getElementById('hamburger').addEventListener('click', () => {
+                document.getElementById('nav-links').classList.toggle('active');
+            });
+
+            // 2. Fetch Data & Populate
+            fetch('data.json')
+                .then(res => res.json())
+                .then(data => {
+                    // Images
+                    document.getElementById('logo').src = data.site_logo;
+                    document.getElementById('hero').src = data.hero_banner;
+                    document.getElementById('story_img').src = data.story_img;
+                    document.getElementById('peace_img').src = data.peace_img;
+                    document.getElementById('am1_img').src = data.am1_img;
+                    document.getElementById('am2_img').src = data.am2_img;
+                    document.getElementById('am3_img').src = data.am3_img;
+                    document.getElementById('am4_img').src = data.am4_img;
+                    document.getElementById('comf_img').src = data.comf_img;
+                    document.getElementById('fp1_img').src = data.fp1_img;
+                    document.getElementById('fp2_img').src = data.fp2_img;
+                    document.getElementById('gal1_img').src = data.gal1_img;
+                    document.getElementById('gal2_img').src = data.gal2_img;
+
+                    // Texts
+                    document.getElementById('ov_title').innerText = data.ov_title;
+                    document.getElementById('ov_desc').innerText = data.ov_desc;
+                    document.getElementById('p_2bhk_area').innerText = data.p_2bhk_area;
+                    document.getElementById('p_2bhk_price').innerText = data.p_2bhk_price;
+                    document.getElementById('p_3bhk_area').innerText = data.p_3bhk_area;
+                    document.getElementById('p_3bhk_price').innerText = data.p_3bhk_price;
+                    
+                    document.getElementById('story_title').innerText = data.story_title;
+                    document.getElementById('story_desc').innerText = data.story_desc;
+                    document.getElementById('peace_title').innerText = data.peace_title;
+                    document.getElementById('peace_desc').innerText = data.peace_desc;
+                    document.getElementById('am_title').innerText = data.am_title;
+                    document.getElementById('am_desc').innerText = data.am_desc;
+                    
+                    document.getElementById('conn_title').innerText = data.conn_title;
+                    document.getElementById('conn_desc').innerText = data.conn_desc;
+                    document.getElementById('comf_title').innerText = data.comf_title;
+                    document.getElementById('comf_desc').innerText = data.comf_desc;
+                    
+                    document.getElementById('fp_title').innerText = data.fp_title;
+                    document.getElementById('fp_desc').innerText = data.fp_desc;
+                    document.getElementById('gal_title').innerText = data.gal_title;
+                    document.getElementById('gal_desc').innerText = data.gal_desc;
+                    document.getElementById('why_title').innerText = data.why_title;
+                    
+                    // Format why choose text to preserve line breaks
+                    document.getElementById('why_desc').innerHTML = data.why_desc.replace(/\n/g, '<br>');
+
+                    // Dynamic Phone Links
+                    let phoneLinks = document.querySelectorAll('.dynamic-call');
+                    phoneLinks.forEach(link => { link.href = "tel:+91" + data.phone_no; });
+                    let waLinks = document.querySelectorAll('.dynamic-wa');
+                    waLinks.forEach(link => { link.href = "https://wa.me/91" + data.phone_no; });
+                })
+                .catch(err => console.error("Error loading JSON data:", err));
+
+            // 3. Popup Logic
+            const popup = document.getElementById('auto-popup');
+            const closeBtn = document.getElementById('close-popup');
+            
+            // Show popup after 4 seconds
+            setTimeout(() => { popup.classList.add('show'); }, 4000);
+            
+            closeBtn.addEventListener('click', () => { popup.classList.remove('show'); });
+            popup.addEventListener('click', (e) => { if (e.target === popup) popup.classList.remove('show'); });
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#"><img id="logo" src="" alt="Delta Greenville" class="logo-img"></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#amenities">Amenities</a></li>
+                <li><a href="#connectivity">Connectivity</a></li>
+                <li><a href="#plans">Floor Plans</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn">Brochure</button>
+                <button class="btn solid">Enquire Now</button>
+            </div>
+            <button class="hamburger" id="hamburger">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <img id="hero" src="" alt="Hero Banner" class="hero">
+
+    <!-- Overview & Pricing -->
+    <section id="overview" class="section-padding text-center">
+        <div class="container">
+            <div class="design-divider">⸎</div>
+            <h2 id="ov_title" class="section-title">Loading...</h2>
+            <p id="ov_desc" class="section-subtitle"></p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Config.</th><th>Carpet Area</th><th>Price</th></tr></thead>
+                    <tbody>
+                        <tr><td>2 BHK</td><td id="p_2bhk_area"></td><td id="p_2bhk_price" style="font-weight:bold;"></td></tr>
+                        <tr><td>3 BHK</td><td id="p_3bhk_area"></td><td id="p_3bhk_price" style="font-weight:bold;"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn">Enquire Now</button>
+        </div>
+    </section>
+
+    <!-- Project Story Video -->
+    <section class="story-section section-padding text-center">
+        <div class="container">
+            <h2 id="story_title" class="section-title"></h2>
+            <p id="story_desc" class="section-subtitle"></p>
+            <img id="story_img" src="" alt="Video Thumbnail" style="max-width:700px; margin:0 auto; border: 8px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <br>
+            <button class="btn">Watch Video</button>
+        </div>
+    </section>
+
+    <!-- Peaceful Aura (Split) -->
+    <section class="peaceful-section section-padding">
+        <div class="container flex-split">
+            <div><img id="peace_img" src="" alt="Scenic View" style="border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);"></div>
+            <div>
+                <h2 id="peace_title" class="section-title" style="text-align: left;"></h2>
+                <p id="peace_desc" style="margin-bottom: 20px; font-size: 1.05rem; opacity: 0.9;"></p>
+                <button class="btn" style="background-color: var(--tan-bg); color: var(--primary-green);">Download Brochure</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Grid -->
+    <section id="amenities" class="amenities-cards section-padding text-center">
+        <div class="container">
+            <h2 id="am_title" class="section-title" style="color: var(--primary-green);"></h2>
+            <p id="am_desc" class="section-subtitle" style="color: var(--dark-text);"></p>
+            
+            <div class="grid-2x2">
+                <div class="card"><img id="am1_img" src="" alt="Amenity 1"><h3 style="color:var(--primary-green);">Grand Banquet</h3></div>
+                <div class="card"><img id="am2_img" src="" alt="Amenity 2"><h3 style="color:var(--primary-green);">Kids Play Area</h3></div>
+                <div class="card"><img id="am3_img" src="" alt="Amenity 3"><h3 style="color:var(--primary-green);">State-of-art Gym</h3></div>
+                <div class="card"><img id="am4_img" src="" alt="Amenity 4"><h3 style="color:var(--primary-green);">Infinity Pool</h3></div>
+            </div>
+            <button class="btn">View All Amenities</button>
+        </div>
+    </section>
+
+    <!-- Connectivity Section -->
+    <section id="connectivity" class="connectivity-section section-padding text-center">
+        <div class="container">
+            <div class="design-divider">⸎</div>
+            <h2 id="conn_title" class="section-title"></h2>
+            <p id="conn_desc" class="section-subtitle"></p>
+            
+            <div class="conn-grid">
+                <div class="conn-col">
+                    <h4>🏫 Education</h4>
+                    <ul><li>Singhania School</li><li>Billabong High Int.</li><li>CP Goenka</li><li>Euro Kids</li></ul>
+                </div>
+                <div class="conn-col">
+                    <h4>🏥 Hospitals</h4>
+                    <ul><li>Jupiter Hospital</li><li>Bethany Hospital</li><li>Titan Hospital</li><li>Vedant Hospital</li></ul>
+                </div>
+                <div class="conn-col">
+                    <h4>🛒 Shopping / Malls</h4>
+                    <ul><li>Viviana Mall</li><li>Korum Mall</li><li>R Mall</li><li>D Mart</li></ul>
+                </div>
+                <div class="conn-col">
+                    <h4>🚆 Transport</h4>
+                    <ul><li>Thane Station</li><li>Upcoming Metro</li><li>Eastern Express Hwy</li><li>Ghodbunder Road</li></ul>
+                </div>
+            </div>
+            <button class="btn">Download Location Map</button>
+        </div>
+    </section>
+
+    <!-- Comfort Courtyard -->
+    <section class="comfort-section section-padding text-center">
+        <div class="container">
+            <h2 id="comf_title" class="section-title"></h2>
+            <p id="comf_desc" class="section-subtitle"></p>
+            
+            <img id="comf_img" src="" alt="Courtyard View" class="comfort-img">
+            
+            <ul class="comfort-list-grid">
+                <li>Senior Citizen Area</li>
+                <li>Jogging Track</li>
+                <li>Yoga Deck</li>
+                <li>Multipurpose Court</li>
+                <li>Indoor Games Room</li>
+                <li>Amphitheatre</li>
+                <li>Reading Lounge</li>
+                <li>BBQ Area</li>
+                <li>Reflexology Path</li>
+            </ul>
+            <button class="btn" style="background-color: var(--tan-bg); color: var(--primary-green);">Book Site Visit</button>
+        </div>
+    </section>
+
+    <!-- Floor Plans -->
+    <section id="plans" class="floor-plan-section section-padding text-center">
+        <div class="container">
+            <div class="design-divider">❖</div>
+            <h2 id="fp_title" class="section-title"></h2>
+            <p id="fp_desc" class="section-subtitle" style="color: var(--dark-text);"></p>
+            
+            <div class="img-row">
+                <img id="fp1_img" src="" alt="Plan 1">
+                <img id="fp2_img" src="" alt="Plan 2">
+            </div>
+            <button class="btn">Download Floor Plan</button>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery-section section-padding text-center">
+        <div class="container">
+            <h2 id="gal_title" class="section-title"></h2>
+            <p id="gal_desc" class="section-subtitle"></p>
+            
+            <div class="img-row">
+                <img id="gal1_img" src="" alt="Gallery 1">
+                <img id="gal2_img" src="" alt="Gallery 2">
+            </div>
+            <button class="btn">View Complete Gallery</button>
+        </div>
+    </section>
+
+    <!-- Why Choose Special Section -->
+    <section class="why-choose section-padding">
+        <div class="container">
+            <h2 id="why_title" class="section-title text-center"></h2>
+            <div id="why_desc"></div>
+            <div class="text-center">
+                <button class="btn" style="background-color: var(--tan-bg); color: var(--primary-green);">Request Call Back</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map -->
+    <section id="contact" class="contact-section">
+        <div class="map-container">
+            <!-- Using static iframe for demo map -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120653.1234!2d72.920!3d19.255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0!2sThane%20West!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin" loading="lazy"></iframe>
+        </div>
+        <div class="form-container">
+            <h2 class="section-title" style="color: var(--primary-green);">Enquire Now</h2>
+            <p style="margin-bottom: 20px; color: var(--gray-text);">Drop your details below and our property expert will contact you shortly.</p>
+            <form action="#">
+                <input type="text" placeholder="Full Name *" required>
+                <input type="tel" placeholder="Mobile Number *" required>
+                <input type="email" placeholder="Email Address">
+                <select required>
+                    <option value="">Interested Configuration</option>
+                    <option value="2bhk">2 BHK</option>
+                    <option value="3bhk">3 BHK</option>
+                </select>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Submit Enquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Disclaimer: The information provided on this website is for general informational purposes only. The project is registered under MahaRERA. The images, plans, layouts, and specifications are tentative and subject to change by the developer without prior notice. This website does not constitute an offer and/or contract of any type. Visual representations are artist's impressions.</p>
+            <p style="margin-top: 10px;">© 2025 Delta Greenville Authorized Partner.</p>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         ON PAGE LOAD POPUP FORM
+         ========================================= -->
+    <div id="auto-popup" class="popup-overlay">
+        <div class="popup-box">
+            <span class="popup-close" id="close-popup">&times;</span>
+            <div class="popup-header">
+                <h3>Launch Offer</h3>
+            </div>
+            <div class="popup-body">
+                <p>Register now to get exclusive access to Pricing & Floor Plans before everyone else!</p>
+                <form action="#">
+                    <input type="text" placeholder="Your Name *" required>
+                    <input type="tel" placeholder="Mobile Number *" required>
+                    <button type="submit" class="popup-btn">Unlock Details Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         MOBILE FIXED BOTTOM BAR (Visible < 768px)
+         ========================================= -->
+    <div class="mobile-bottom-bar">
+        <div class="appointment-banner">For Site Visit, Appointment Compulsory</div>
+        <div class="action-buttons">
+            <a href="#" class="btn-call dynamic-call">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> 
+                Call Now
+            </a>
+            <a href="#contact" class="btn-enquire">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> 
+                Enquire
+            </a>
+            <a href="#" target="_blank" class="btn-whatsapp dynamic-wa">
+                <svg viewBox="0 0 24 24"><path d="M12.031 21c-1.566 0-3.088-.42-4.425-1.217L2 21.056l1.32-5.466A9.957 9.957 0 012.046 11c0-5.514 4.486-10 10-10s10 4.486 10 10-4.485 10-9.985 10h-.03zM7.55 18.06c1.334.79 2.87 1.21 4.45 1.21 4.565 0 8.28-3.715 8.28-8.28S16.565 2.71 12 2.71c-4.566 0-8.28 3.715-8.28 8.28 0 1.636.452 3.22 1.306 4.606l-.688 2.846 2.912-.693zm8.796-3.805c-.477-.24-2.825-1.395-3.264-1.554-.44-.16-.76-.24-1.14.32-.38.56-1.236 1.554-1.515 1.873-.28.32-.56.36-1.038.12-.477-.24-2.02-.746-3.847-2.38-.142-.127-.58-.564-.81-1.018-.23-.454-.025-.7.214-.94.215-.216.477-.56.716-.84.24-.28.32-.477.478-.8.16-.32.08-.6-.04-.84-.12-.24-1.14-2.753-1.56-3.77-.412-.99-.83-.858-1.14-.874-.28-.013-.6-.016-.92-.016-.32 0-.84.12-1.278.6-.44.48-1.677 1.638-1.677 3.993 0 2.356 1.717 4.634 1.956 4.954.24.32 3.376 5.156 8.18 7.23 1.14.492 2.032.785 2.727 1.006 1.145.365 2.188.313 3.01.19 1.18-.178 3.633-1.485 4.143-2.92.51-1.436.51-2.666.358-2.92-.15-.256-.55-.416-1.028-.656z"/></svg> 
+                WhatsApp
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
