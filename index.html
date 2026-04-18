@@ -53,6 +53,8 @@
         table { width: 100%; border-collapse: collapse; margin: 30px 0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
         th { background-color: var(--primary-green); color: var(--white); padding: 15px; text-transform: uppercase; border-right: 1px solid #1c6641; }
         td { padding: 15px; border-bottom: 1px solid #ddd; background-color: #fdf5e6; border-right: 1px solid #e0d0b8; font-weight: 500;}
+        #overview td { cursor: pointer; transition: 0.3s; }
+        #overview td:hover { background-color: var(--light-green); color: var(--primary-green); }
 
         /* Sections Backgrounds & Layouts */
         .story-section { background-color: var(--light-green); }
@@ -196,6 +198,7 @@
                 .then(data => {
                     // Images
                     document.getElementById('logo').src = data.site_logo;
+                    document.getElementById('popup-logo').src = data.site_logo;
                     document.getElementById('hero').src = data.hero_banner;
                     document.getElementById('story_img').src = data.story_img;
                     document.getElementById('peace_img').src = data.peace_img;
@@ -257,7 +260,7 @@
             popup.addEventListener('click', (e) => { if (e.target === popup) popup.classList.remove('show'); });
 
             // Trigger popup on all CTA buttons
-            const triggerBtns = document.querySelectorAll('.btn, .btn-enquire');
+            const triggerBtns = document.querySelectorAll('.btn, .btn-enquire, #overview td');
             triggerBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     // Skip if button is inside the popup itself or if it's a submit button in a form
@@ -485,6 +488,7 @@
         <div class="popup-box">
             <span class="popup-close" id="close-popup">&times;</span>
             <div class="popup-header">
+                <img id="popup-logo" src="" alt="Delta Greenville Logo" style="height: 45px; margin-bottom: 15px;">
                 <h3>Launch Offer</h3>
             </div>
             <div class="popup-body">
