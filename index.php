@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+<?php
+$data_file = 'data.json';
+$data = [];
+if (file_exists($data_file)) {
+    $data = json_decode(file_get_contents($data_file), true);
+}
+
+function get_val($key, $fallback = '') {
+    global $data;
+    return (isset($data[$key]) && !empty($data[$key])) ? $data[$key] : $fallback;
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -1082,7 +1094,7 @@
     <!-- Navigation -->
     <header>
         <div class="nav-container">
-            <a href="/"><img id="logo" src="images/site_logo_1776842346.jpg" alt="Siyara Vista Kalyan"
+            <a href="/"><img id="logo" src="<?=get_val('site_logo', 'images/site_logo_1776468513.png')?>" alt="Siyara Vista Kalyan"
                     class="logo-img"></a>
             <nav>
                 <ul class="nav-links" id="nav-links">
@@ -1109,15 +1121,15 @@
             <h1
                 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">
                 Siyara Vista Kalyan</h1>
-            <img id="hero" src="images/hero_banner_1776842594.png" alt="Siyara Vista Kalyan Hero Banner" class="hero">
+            <img id="hero" src="<?=get_val('hero_banner', 'images/hero_banner_1776468513.jpg')?>" alt="Siyara Vista Kalyan Hero Banner" class="hero">
         </section>
 
         <!-- Overview & Pricing -->
         <section id="overview" class="section-padding text-center">
             <div class="container">
                 <div class="design-divider">⸎</div>
-                <h2 class="section-title">SIYARA VISTA KALYAN WEST</h2>
-                <p class="section-subtitle">Discover elevated living with modern design, premium amenities, and excellent connectivity at one of Kalyan’s fastest-growing locations. Siyara Vista by Shakti Group offers a perfect blend of luxury and functionality for modern families.</p>
+                <h2 class="section-title"><?=get_val('ov_title', 'SIYARA VISTA KALYAN WEST')?></h2>
+                <p class="section-subtitle"><?=get_val('ov_desc', 'Discover elevated living with modern design, premium amenities, and excellent connectivity at one of Kalyan’s fastest-growing locations. Siyara Vista by Shakti Group offers a perfect blend of luxury and functionality for modern families.')?></p>
 
                 <div class="table-wrapper">
                     <table>
@@ -1131,13 +1143,13 @@
                         <tbody>
                             <tr>
                                 <td>Spacious 2 BHK</td>
-                                <td>623 – 760 sq.ft.</td>
-                                <td style="font-weight:bold;">₹ 80 Lakhs*+</td>
+                                <td><?=get_val('p_2bhk_area', '623 – 760 sq.ft.')?></td>
+                                <td style="font-weight:bold;"><?=get_val('p_2bhk_price', '₹ 80 Lakhs*+')?></td>
                             </tr>
                             <tr>
                                 <td>Premium 3 BHK</td>
-                                <td>1000+ sq.ft.</td>
-                                <td style="font-weight:bold;">₹ 1.20 Cr*+</td>
+                                <td><?=get_val('p_3bhk_area', '1000+ sq.ft.')?></td>
+                                <td style="font-weight:bold;"><?=get_val('p_3bhk_price', '₹ 1.20 Cr*+')?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -1149,9 +1161,9 @@
         <!-- Project Story -->
         <section class="story-section section-padding text-center">
             <div class="container">
-                <h2 class="section-title">THE STORY OF SIYARA VISTA KALYAN</h2>
-                <p class="section-subtitle">Experience luxury living with state-of-the-art amenities curated perfectly for you. Shakti Group presents a high-rise marvel that redefines the skyline of Kalyan West.</p>
-                <img id="story_img" src="images/story_img_1776842594.png" alt="Siyara Vista Kalyan Project Story"
+                <h2 class="section-title"><?=get_val('story_title', 'THE STORY OF SIYARA VISTA KALYAN')?></h2>
+                <p class="section-subtitle"><?=get_val('story_desc', 'Experience luxury living with state-of-the-art amenities curated perfectly for you. Shakti Group presents a high-rise marvel that redefines the skyline of Kalyan West.')?></p>
+                <img id="story_img" src="<?=get_val('story_img', 'images/story_img_1776468649.webp')?>" alt="Siyara Vista Kalyan Project Story"
                     style="max-width:700px; margin:0 auto; border: 8px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                 <br>
                 <button class="btn">Watch Project Overview</button>
@@ -1161,12 +1173,13 @@
         <!-- Peaceful Aura -->
         <section class="peaceful-section section-padding">
             <div class="container flex-split">
-                <div><img id="peace_img" src="images/peace_img_1776842594.png"
+                <div><img id="peace_img" src="<?=get_val('peace_img', 'images/peace_img_1776468735.webp')?>"
                         alt="Peaceful Living at Siyara Vista Kalyan"
                         style="border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);"></div>
                 <article>
-                    <h2 class="section-title" style="text-align: left;">EACH MORNING GREETS YOU WITH A PEACEFUL AURA                    </h2>
-                    <p style="margin-bottom: 20px; font-size: 1.05rem; opacity: 0.9;">Wake up to breathtaking views and serene surroundings at Siyara Vista Kalyan. Our thoughtfully designed spaces ensure maximum natural light and ventilation, providing a perfect blend of nature and modern architecture. Escape the hustle and bustle while staying connected to the heart of Kalyan West.</p>
+                    <h2 class="section-title" style="text-align: left;"><?=get_val('peace_title', 'EACH MORNING GREETS YOU WITH A PEACEFUL AURA')?>
+                    </h2>
+                    <p style="margin-bottom: 20px; font-size: 1.05rem; opacity: 0.9;"><?=get_val('peace_desc', 'Wake up to breathtaking views and serene surroundings at Siyara Vista Kalyan. Our thoughtfully designed spaces ensure maximum natural light and ventilation, providing a perfect blend of nature and modern architecture. Escape the hustle and bustle while staying connected to the heart of Kalyan West.')?></p>
                     <button class="btn" style="background-color: var(--tan-bg); color: var(--primary-green);">Download
                         Project Brochure</button>
                 </article>
@@ -1176,23 +1189,25 @@
         <!-- Amenities Grid -->
         <section id="amenities" class="amenities-cards section-padding text-center">
             <div class="container">
-                <h2 class="section-title" style="color: var(--primary-green);">WORLD-CLASS AMENITIES AT SIYARA VISTA                </h2>
-                <p class="section-subtitle" style="color: var(--dark-text);">Experience an elevated lifestyle at Siyara Vista Kalyan with curated amenities for every age group, designed to pamper you every single day.                </p>
+                <h2 class="section-title" style="color: var(--primary-green);"><?=get_val('am_title', 'WORLD-CLASS AMENITIES AT SIYARA VISTA')?>
+                </h2>
+                <p class="section-subtitle" style="color: var(--dark-text);"><?=get_val('am_desc', 'Experience an elevated lifestyle at Siyara Vista Kalyan with curated amenities for every age group, designed to pamper you every single day.')?>
+                </p>
 
                 <div class="grid-2x2">
-                    <div class="card"><img id="am1_img" src="images/am1_img_1776842717.png"
+                    <div class="card"><img id="am1_img" src="<?=get_val('am1_img', 'images/am1_img_1776468649.webp')?>"
                             alt="Grand Entrance Lobby Siyara Vista Kalyan">
                         <h3 style="color:var(--primary-green);">Grand Entrance Lobby</h3>
                     </div>
-                    <div class="card"><img id="am2_img" src="images/am2_img_1776842717.png"
+                    <div class="card"><img id="am2_img" src="<?=get_val('am2_img', 'images/am2_img_1776468649.webp')?>"
                             alt="Kids Play Area Siyara Vista Kalyan">
                         <h3 style="color:var(--primary-green);">Children's Play Area</h3>
                     </div>
-                    <div class="card"><img id="am3_img" src="images/am3_img_1776842717.png"
+                    <div class="card"><img id="am3_img" src="<?=get_val('am3_img', 'images/am3_img_1776468649.webp')?>"
                             alt="Modern Gymnasium Siyara Vista Kalyan">
                         <h3 style="color:var(--primary-green);">Modern Gymnasium</h3>
                     </div>
-                    <div class="card"><img id="am4_img" src="images/am4_img_1776842717.png"
+                    <div class="card"><img id="am4_img" src="<?=get_val('am4_img', 'images/am4_img_1776468649.webp')?>"
                             alt="Swimming Pool Siyara Vista Kalyan">
                         <h3 style="color:var(--primary-green);">Infinity Swimming Pool</h3>
                     </div>
@@ -1205,8 +1220,8 @@
         <section id="connectivity" class="connectivity-section section-padding text-center">
             <div class="container">
                 <div class="design-divider">⸎</div>
-                <h2 class="section-title">SEAMLESS CONNECTIVITY IN KALYAN WEST</h2>
-                <p class="section-subtitle">Siyara Vista Kalyan is strategically located at Prem Auto Junction, ensuring that everything you need is just a few minutes away from your dream home.</p>
+                <h2 class="section-title"><?=get_val('conn_title', 'SEAMLESS CONNECTIVITY IN KALYAN WEST')?></h2>
+                <p class="section-subtitle"><?=get_val('conn_desc', 'Siyara Vista Kalyan is strategically located at Prem Auto Junction, ensuring that everything you need is just a few minutes away from your dream home.')?></p>
 
                 <div class="conn-grid">
                     <div class="conn-col">
@@ -1253,10 +1268,10 @@
         <!-- Comfort Courtyard -->
         <section class="comfort-section section-padding text-center">
             <div class="container">
-                <h2 class="section-title">ELEVATE YOUR COMFORT & CONVENIENCE</h2>
-                <p class="section-subtitle">Discover a wide range of facilities designed to pamper you every single day at Siyara Vista Kalyan. From fitness to relaxation, we have it all covered.</p>
+                <h2 class="section-title"><?=get_val('comf_title', 'ELEVATE YOUR COMFORT & CONVENIENCE')?></h2>
+                <p class="section-subtitle"><?=get_val('comf_desc', 'Discover a wide range of facilities designed to pamper you every single day at Siyara Vista Kalyan. From fitness to relaxation, we have it all covered.')?></p>
 
-                <img id="comf_img" src="images/comf_img_1776842830.png" alt="Comfort Courtyard Siyara Vista Kalyan"
+                <img id="comf_img" src="<?=get_val('comf_img', 'images/comf_img_1776468861.png')?>" alt="Comfort Courtyard Siyara Vista Kalyan"
                     class="comfort-img">
 
                 <ul class="comfort-list-grid">
@@ -1279,12 +1294,12 @@
         <section id="plans" class="floor-plan-section section-padding text-center">
             <div class="container">
                 <div class="design-divider">❖</div>
-                <h2 class="section-title">SIYARA VISTA KALYAN MASTER PLAN</h2>
-                <p class="section-subtitle" style="color: var(--dark-text);">Explore our meticulously planned layouts designed for maximum space utilization and comfort. Every 2 BHK and 3 BHK apartment at Siyara Vista is a masterpiece of design.</p>
+                <h2 class="section-title"><?=get_val('fp_title', 'SIYARA VISTA KALYAN MASTER PLAN')?></h2>
+                <p class="section-subtitle" style="color: var(--dark-text);"><?=get_val('fp_desc', 'Explore our meticulously planned layouts designed for maximum space utilization and comfort. Every 2 BHK and 3 BHK apartment at Siyara Vista is a masterpiece of design.')?></p>
 
                 <div class="img-row">
-                    <img id="fp1_img" src="images/fp1_img_1776490386.jpg" alt="Floor Plan 2 BHK Siyara Vista Kalyan">
-                    <img id="fp2_img" src="images/fp2_img_1776490386.jpg" alt="Floor Plan 3 BHK Siyara Vista Kalyan">
+                    <img id="fp1_img" src="<?=get_val('fp1_img', 'images/fp1_img_1776490386.jpg')?>" alt="Floor Plan 2 BHK Siyara Vista Kalyan">
+                    <img id="fp2_img" src="<?=get_val('fp2_img', 'images/fp2_img_1776490386.jpg')?>" alt="Floor Plan 3 BHK Siyara Vista Kalyan">
                 </div>
                 <button class="btn">Download Floor Plan PDF</button>
             </div>
@@ -1293,12 +1308,12 @@
         <!-- Gallery -->
         <section id="gallery" class="gallery-section section-padding text-center">
             <div class="container">
-                <h2 class="section-title">GLIMPSE OF KALYAN WEST LATEST PROJECT</h2>
-                <p class="section-subtitle">Take a tour of your future home with these exclusive previews of Siyara Vista Kalyan. Experience the high-rise luxury even before you move in.</p>
+                <h2 class="section-title"><?=get_val('gal_title', 'GLIMPSE OF KALYAN WEST LATEST PROJECT')?></h2>
+                <p class="section-subtitle"><?=get_val('gal_desc', 'Take a tour of your future home with these exclusive previews of Siyara Vista Kalyan. Experience the high-rise luxury even before you move in.')?></p>
 
                 <div class="img-row">
-                    <img id="gal1_img" src="images/gal1_img_1776842830.png" alt="Siyara Vista Kalyan Gallery Image 1">
-                    <img id="gal2_img" src="images/gal2_img_1776842830.png" alt="Siyara Vista Kalyan Gallery Image 2">
+                    <img id="gal1_img" src="<?=get_val('gal1_img', 'images/gal1_img_1776468861.webp')?>" alt="Siyara Vista Kalyan Gallery Image 1">
+                    <img id="gal2_img" src="<?=get_val('gal2_img', 'images/gal2_img_1776468861.webp')?>" alt="Siyara Vista Kalyan Gallery Image 2">
                 </div>
                 <button class="btn">View Complete Gallery</button>
             </div>
@@ -1306,11 +1321,10 @@
 
         <!-- Why        <section class="why-choose section-padding">
             <div class="container">
-                <h2 class="section-title text-center">WHY SIYARA VISTA KALYAN BY SHAKTI GROUP IS SO SPECIAL?</h2>
+                <h2 class="section-title text-center"><?=get_val('why_title', 'WHY SIYARA VISTA KALYAN BY SHAKTI GROUP IS SO SPECIAL?')?></h2>
                 <div id="why_desc">
-                    Welcome to Siyara Vista Kalyan, a prestigious residential landmark presented by the renowned Shakti Group. Nestled in the heart of Kalyan West at the bustling Prem Auto Junction, Siyara Vista is more than just a residence; it is a statement of elevated living.
-
-Designed for those who seek a perfect balance between modern urban life and serene comfort, this G + 31 storey high-rise tower stands as a beacon of architectural brilliance in one of Kalyan’s fastest-growing locations. The project focuses on quality, transparency, and timely delivery, ensuring that your investment is secure and your lifestyle is unparalleled.                </div>on, Kalyan West, awaits you!</p>
+                    <?=get_val('why_desc', '<p><strong>Introduction: A New Era of Luxury in Kalyan West</strong><br>Welcome to Siyara Vista Kalyan...</p>')?>
+                </div>on, Kalyan West, awaits you!</p>
                 </div>
                 <div class="text-center">
                     <button class="btn" style="background-color: var(--tan-bg); color: var(--primary-green);">Request
@@ -1324,7 +1338,7 @@ Designed for those who seek a perfect balance between modern urban life and sere
             <div class="map-container">
                 <!-- Using static iframe for demo map -->
                 <iframe id="map-iframe"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120552.66343925614!2d73.06514799683491!3d19.227029275388578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be796f457b1b76f%3A0x35df463ca445bd26!2sKalyan%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1776843928830!5m2!1sen!2sin"
+                    src="<?=get_val('google_map', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.866579696954!2d73.12652241490215!3d19.2290931870041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7940f55555555%3A0x5555555555555555!2sPrem%20Auto%20Junction%2C%20Kalyan%20West!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin')?>"
                     loading="lazy"></iframe>
             </div>
             <div class="form-container">
@@ -1446,7 +1460,7 @@ Designed for those who seek a perfect balance between modern urban life and sere
             <div class="popup-box">
                 <span class="popup-close" id="close-popup">&times;</span>
                 <div class="popup-header">
-                    <img id="popup-logo" src="images/site_logo_1776842346.jpg" alt="Siyara Vista Kalyan Logo"
+                    <img id="popup-logo" src="<?=get_val('site_logo', 'images/site_logo_1776468513.png')?>" alt="Siyara Vista Kalyan Logo"
                         style="height: 45px; margin: 0 auto 15px; display: block;">
                     <h3>PRIORITY PASS OPEN</h3>
                 </div>
@@ -1504,7 +1518,7 @@ Designed for those who seek a perfect balance between modern urban life and sere
 
     <script>
         // Use PHP to inject dynamic values where needed for JS (like phone links)
-        const currentPhone = "8237498373";
+        const currentPhone = "<?=get_val('phone_no', '8237498373')?>";
         document.querySelectorAll('.dynamic-call').forEach(el => el.href = 'tel:+91' + currentPhone.replace(/\s/g, ''));
         document.querySelectorAll('.contact-number').forEach(el => el.textContent = '+91 ' + currentPhone);
     </script>
