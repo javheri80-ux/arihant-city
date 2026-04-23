@@ -1,21 +1,43 @@
 {
-  "functions": {
-    "*.php": {
-      "runtime": "vercel-php@0.7.1"
-    }
-  },
-  "routes": [
+  "version": 2,
+  "builds": [
     {
-      "src": "/(index.php)?",
-      "dest": "index.php"
+      "src": "*.php",
+      "use": "vercel-php@0.7.1"
     },
     {
-      "src": "/admin(.php)?",
+      "src": "blog/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "images/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "data.json",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/admin",
       "dest": "admin.php"
     },
     {
-      "src": "/contact(.php)?",
+      "src": "/contact",
       "dest": "contact.php"
+    },
+    {
+      "src": "/leads",
+      "dest": "baba-leads.php"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.php"
     }
   ]
 }
