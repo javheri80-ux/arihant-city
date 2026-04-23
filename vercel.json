@@ -1,9 +1,24 @@
 {
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.7.1"
+    },
+    "*.php": {
+      "runtime": "vercel-php@0.7.1"
+    }
+  },
   "routes": [
     {
-      "src": "/gotya.txt",
-      "status": 403,
-      "dest": "/"
+      "src": "/(index.php)?",
+      "dest": "index.php"
+    },
+    {
+      "src": "/admin(.php)?",
+      "dest": "admin.php"
+    },
+    {
+      "src": "/contact(.php)?",
+      "dest": "contact.php"
     }
   ]
 }
