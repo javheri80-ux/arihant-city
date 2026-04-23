@@ -302,7 +302,7 @@ function get_val($key, $fallback = '') {
 
     <header>
         <div class="nav-container container">
-            <a href="index.php"><img id="logo" src="<?= get_val('site_logo', 'images/site_logo_1776842346.jpg') ?>" alt="Arihant City Logo" class="logo-img"></a>
+            <a href="index.php"><img id="logo" src="<?= get_val('site_logo', 'images/site_logo_1776905712.png') ?>" alt="Arihant City Logo" class="logo-img"></a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#overview">Overview</a></li>
@@ -316,7 +316,7 @@ function get_val($key, $fallback = '') {
     </header>
 
     <main>
-        <img src="<?= get_val('hero_banner', 'images/hero_banner_1776842594.png') ?>" alt="Arihant City Hero Banner" class="hero">
+        <img src="<?= get_val('hero_banner', 'images/hero_banner_1776905712.jpg') ?>" alt="Arihant City Hero Banner" class="hero">
 
         <section id="overview" class="section-padding container text-center">
             <h2 class="section-title"><?= get_val('ov_title', 'ARIHANT CITY KALYAN BHIWANDI - PROJECT OVERVIEW') ?></h2>
@@ -352,7 +352,7 @@ function get_val($key, $fallback = '') {
                 <div style="text-align: justify; max-width: 900px; margin: 0 auto; margin-bottom: 30px;">
                     <?= nl2br(get_val('story_desc', 'Arihant City is a meticulously planned township...')) ?>
                 </div>
-                <img src="<?= get_val('story_img', 'images/story_img_1776842594.png') ?>" alt="Arihant City Story" style="max-width: 700px; margin: 0 auto; border: 5px solid #fff;">
+                <img src="<?= get_val('story_img', 'images/story_img_1776905960.jpg') ?>" alt="Arihant City Story" style="max-width: 700px; margin: 0 auto; border: 5px solid #fff;">
             </div>
         </section>
 
@@ -360,10 +360,10 @@ function get_val($key, $fallback = '') {
             <h2 class="section-title"><?= get_val('am_title', 'PREMIUM AMENITIES') ?></h2>
             <p class="section-subtitle"><?= get_val('am_desc', 'World-class facilities for your comfort.') ?></p>
             <div class="grid-2x2">
-                <div class="card"><img src="<?= get_val('am1_img', 'images/am1_img_1776842717.png') ?>" alt="Amenity 1"><h3>Swimming Pool</h3></div>
-                <div class="card"><img src="<?= get_val('am2_img', 'images/am2_img_1776842717.png') ?>" alt="Amenity 2"><h3>Clubhouse</h3></div>
-                <div class="card"><img src="<?= get_val('am3_img', 'images/am3_img_1776842717.png') ?>" alt="Amenity 3"><h3>Fitness Center</h3></div>
-                <div class="card"><img src="<?= get_val('am4_img', 'images/am4_img_1776842717.png') ?>" alt="Amenity 4"><h3>Gardens</h3></div>
+                <div class="card"><img src="<?= get_val('am1_img', 'images/am1_img_1776905960.jpg') ?>" alt="Amenity 1"><h3>Swimming Pool</h3></div>
+                <div class="card"><img src="<?= get_val('am2_img', 'images/am2_img_1776905960.jpg') ?>" alt="Amenity 2"><h3>Clubhouse</h3></div>
+                <div class="card"><img src="<?= get_val('am3_img', 'images/am3_img_1776905960.jpg') ?>" alt="Amenity 3"><h3>Fitness Center</h3></div>
+                <div class="card"><img src="<?= get_val('am4_img', 'images/am4_img_1776905960.jpg') ?>" alt="Amenity 4"><h3>Gardens</h3></div>
             </div>
         </section>
 
