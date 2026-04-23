@@ -1,4 +1,6 @@
 <?php
+// Project: Arihant City Kalyan Bhiwandi
+// Optimized for Local (XAMPP) and Vercel Deployment
 $data_file = 'data.json';
 $data = [];
 if (file_exists($data_file)) {
