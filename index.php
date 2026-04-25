@@ -445,13 +445,13 @@ function get_val($key, $fallback = '') {
                     <tbody>
                         <tr>
                             <td>1 BHK Luxury</td>
-                            <td><?= get_val('p_2bhk_area', '543 SqFt') ?></td>
-                            <td><?= get_val('p_2bhk_price', '₹ 44.99 Lakhs*') ?></td>
+                            <td><?= get_val('p_2bhk_area', '519 SqFt') ?></td>
+                            <td><a href="#contact" class="btn" style="margin-top: 0; padding: 5px 15px; font-size: 0.75rem;">Price on Request</a></td>
                         </tr>
                         <tr>
                             <td>2 BHK Elite</td>
                             <td><?= get_val('p_3bhk_area', '760 SqFt') ?></td>
-                            <td><?= get_val('p_3bhk_price', '₹ 89.99 Lakhs*') ?></td>
+                            <td><a href="#contact" class="btn" style="margin-top: 0; padding: 5px 15px; font-size: 0.75rem;">Price on Request</a></td>
                         </tr>
                     </tbody>
                 </table>
