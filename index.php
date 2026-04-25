@@ -400,6 +400,59 @@ function get_val($key, $fallback = '') {
                 padding: 0 10px;
             }
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-maroon);
+            font-weight: bold;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 10px;
+            color: var(--primary-maroon);
+            font-size: 1.5rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
     </style>
 </head>
 
@@ -446,12 +499,12 @@ function get_val($key, $fallback = '') {
                         <tr>
                             <td>1 BHK Luxury</td>
                             <td><?= get_val('p_2bhk_area', '519 SqFt') ?></td>
-                            <td><a href="#contact" class="btn" style="margin-top: 0; padding: 5px 15px; font-size: 0.75rem;">Price on Request</a></td>
+                            <td><button class="btn price-btn" style="margin-top: 0; padding: 5px 15px; font-size: 0.75rem;">Price on Request</button></td>
                         </tr>
                         <tr>
                             <td>2 BHK Elite</td>
                             <td><?= get_val('p_3bhk_area', '760 SqFt') ?></td>
-                            <td><a href="#contact" class="btn" style="margin-top: 0; padding: 5px 15px; font-size: 0.75rem;">Price on Request</a></td>
+                            <td><button class="btn price-btn" style="margin-top: 0; padding: 5px 15px; font-size: 0.75rem;">Price on Request</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -579,6 +632,26 @@ function get_val($key, $fallback = '') {
         </div>
     </footer>
 
+    <!-- Price Modal -->
+    <div class="modal-overlay" id="priceModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <h2>Enquire for Price</h2>
+            <p>Please fill out the form below to receive the complete price list and special offers.</p>
+            <form action="contact.php" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="tel" name="phone" placeholder="Mobile Number" required>
+                <select name="config">
+                    <option value="1BHK">1 BHK</option>
+                    <option value="2BHK">2 BHK</option>
+                    <option value="3BHK">3 BHK</option>
+                    <option value="4BHK">4 BHK</option>
+                </select>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Request Price Details</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
@@ -592,6 +665,28 @@ function get_val($key, $fallback = '') {
             link.addEventListener('click', () => {
                 navList.classList.remove('active');
             });
+        });
+
+        // Modal Logic
+        const priceModal = document.getElementById('priceModal');
+        const closeModal = document.getElementById('closeModal');
+        const priceBtns = document.querySelectorAll('.price-btn');
+
+        priceBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                priceModal.style.display = 'flex';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            priceModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === priceModal) {
+                priceModal.style.display = 'none';
+            }
         });
     </script>
 </body>
